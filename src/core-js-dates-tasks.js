@@ -95,8 +95,9 @@ function getNextFriday(/* date */) {
  * 1, 2024 => 31
  * 2, 2024 => 29
  */
-function getCountDaysInMonth(/* month, year */) {
-  throw new Error('Not implemented');
+function getCountDaysInMonth(month, year) {
+  const monthIndex = month - 1;
+  return new Date(year, monthIndex + 1, 0).getDate();
 }
 
 /**
@@ -256,7 +257,7 @@ module.exports = {
   getTime, // done
   getDayName, // done
   getNextFriday,
-  getCountDaysInMonth,
+  getCountDaysInMonth, // done
   getCountDaysOnPeriod,
   isDateInPeriod,
   formatDate,
