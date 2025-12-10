@@ -132,8 +132,12 @@ function getCountDaysOnPeriod(/* dateStart, dateEnd */) {
  * '2024-02-02', { start: '2024-02-02', end: '2024-03-02' } => true
  * '2024-02-10', { start: '2024-02-02', end: '2024-03-02' } => true
  */
-function isDateInPeriod(/* date, period */) {
-  throw new Error('Not implemented');
+function isDateInPeriod(date, period) {
+  const checkTime = new Date(date).getTime();
+  const startTime = new Date(period.start).getTime();
+  const endTime = new Date(period.end).getTime();
+
+  return checkTime >= startTime && checkTime <= endTime;
 }
 
 /**
@@ -259,7 +263,7 @@ module.exports = {
   getNextFriday,
   getCountDaysInMonth, // done
   getCountDaysOnPeriod,
-  isDateInPeriod,
+  isDateInPeriod, // done
   formatDate,
   getCountWeekendsInMonth,
   getWeekNumberByDate,
