@@ -80,8 +80,19 @@ function getDayName(date) {
  * Date('2024-02-13T00:00:00Z') => Date('2024-02-16T00:00:00Z')
  * Date('2024-02-16T00:00:00Z') => Date('2024-02-23T00:00:00Z')
  */
-function getNextFriday(/* date */) {
-  throw new Error('Not implemented');
+function getNextFriday(date) {
+  const nextFridayDate = new Date(date);
+  const currentDayOfTheWeek = nextFridayDate.getDay();
+  const FRIDAY = 5;
+
+  let daysToAdd = FRIDAY - currentDayOfTheWeek;
+
+  if (daysToAdd <= 0) {
+    daysToAdd += 7;
+  }
+
+  nextFridayDate.setDate(nextFridayDate.getDate() + daysToAdd);
+  return nextFridayDate;
 }
 
 /**
@@ -264,7 +275,7 @@ module.exports = {
   dateToTimestamp, // done
   getTime, // done
   getDayName, // done
-  getNextFriday,
+  getNextFriday, // done
   getCountDaysInMonth, // done
   getCountDaysOnPeriod, // done
   isDateInPeriod, // done
