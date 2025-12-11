@@ -203,8 +203,19 @@ function formatDate(date) {
  * 12, 2023 => 10
  * 1, 2024 => 8
  */
-function getCountWeekendsInMonth(/* month, year */) {
-  throw new Error('Not implemented');
+function getCountWeekendsInMonth(month, year) {
+  const firstDay = new Date(year, month - 1, 1);
+  const lastDay = new Date(year, month, 0);
+
+  let count = 0;
+
+  for (let day = firstDay; day <= lastDay; day.setDate(day.getDate() + 1)) {
+    const currentWeekDay = day.getDay();
+    if (currentWeekDay === 0 || currentWeekDay === 6) {
+      count += 1;
+    }
+  }
+  return count;
 }
 
 /**
@@ -301,7 +312,7 @@ module.exports = {
   getCountDaysOnPeriod, // done
   isDateInPeriod, // done
   formatDate, // done
-  getCountWeekendsInMonth,
+  getCountWeekendsInMonth, // done
   getWeekNumberByDate,
   getNextFridayThe13th,
   getQuarter,
